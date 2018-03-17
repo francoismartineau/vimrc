@@ -1,0 +1,193 @@
+"-- ENCODING --------------------------------------------
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
+
+"-- JUMPS --------------------------------------------
+" End of line                       SHIFT + RIGHT
+map <S-Right> g_
+imap <S-Right> <esc>g_a
+" Start of line                     SHIFT + LEFT
+map <S-Left> ^
+imap <S-Left> <esc>^i
+" Paragraph                         CTRL + ARROWS
+map <C-Up> {
+map <C-Down> }
+imap <C-Up> <Esc>{a
+imap <C-Down> <Esc>}a
+
+"-- AUTO INSERT ----------------------------------------
+" {}                                ALT + 7
+imap <M-7> {}<Left>                    
+" ()                                ALT + 9
+imap <M-9> ()<Left>
+" []                                ALT + -
+imap <M--> []<Left>
+" New line after                    SHIFT + ENTER
+imap <S-CR> <esc>A<RETURN><Up><esc>I
+map <S-CR> A<RETURN><Up><esc>I
+" New line, keep position           CTRL + ENTER
+imap <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
+map <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
+
+"-- FILE --------------------------------------------
+" New 				                Ctrl + N
+map <C-n> <esc>:!start gvim.exe<RETURN>
+imap <C-n> <esc>:!start gvim.exe<RETURN>
+" Save 				                Ctrl + S
+imap <C-s> <esc>:w!<RETURN>a
+map <C-s> <esc>:w!<RETURN>a
+" Save as			                Alt + S
+map <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
+imap <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
+" Save and quit                     Ctrl + W
+imap <C-w> <esc>:x!<RETURN>
+map <C-w> <esc>:x!<RETURN>
+" Rename file                       ALT + R                 
+map <A-r> :Rename 
+imap <A-r> <esc>:Rename 
+" Explore current file's location   ALT + F11
+map <A-F11> <esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p:h<RETURN><RETURN>:<BS>
+imap <A-F11> <esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p:h<RETURN><RETURN>:<BS>
+
+"-- EDIT --------------------------------------------
+" Undo				                Cltr + Z
+imap <C-z> <esc>ui
+map <C-z> <esc>u
+" Redo				                Alt + z
+imap <M-z> <esc><C-r>i
+map <M-z> <esc><C-r>
+" Copy				                Cltr + C
+map <C-c> "+y
+" Cut				                Cltr + X
+map <C-x> "+d
+" Paste				                Ctrl + V
+imap <C-v> <esc>"+p
+noremap <C-v> <esc>"+p
+vnoremap <C-v> x<Left><esc>"+p
+
+"-- UTILITIES -------------------------------------
+" Completion
+imap <C-Space> <C-p>
+" Find				                Ctrl + F
+set ignorecase
+map <C-f> <esc>/
+" Substitute                        Shift + S
+map <S-s> <esc>:%s/
+" Unselect found words              CTRL + L
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+"Select all			                Ctrl + A 
+imap <C-a> <esc>ggVG<CR>
+noremap <C-a> <esc>ggVG<CR>
+" Visual block                      Alt + V
+noremap <A-v> <C-v>                 
+" Visual                            V
+map v v<Right>
+" Move                              ARROWS
+vmap <Up> k
+vmap <Down> j
+vmap <Left> h
+vmap <Right> l
+
+
+
+
+
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"/// CODING ////////////////////////////////////////////////////////////////////////////////////
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"-- PYTHON ----------------------------------------------------------------------------------------------------
+"-- Save and run                        F2
+imap <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
+map <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
+
+"-- C++ -------------------------------------------------------------------------------------------------------
+"-- Main template	                    CTRL+F3
+imap <C-F3> #include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
+map <C-F3> i#include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
+"-- Header file template                SHIFT+F3
+imap <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
+map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
+"-- Compile current file only           ALT+F3
+imap <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
+map <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
+"-- Run                                 F3
+imap <F3> <esc>:! %:r.exe<RETURN><RETURN>
+map <F3> <esc>:! %:r.exe<RETURN><RETURN>
+"-- Auto CMake and compile              ALT+F5
+imap <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+map <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+"-- Run                                 F5
+imap <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+map <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+
+"-- VIM execute ------------------------------------------------------------------------------
+"-- Execute current file                F11
+imap <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p<RETURN><RETURN>
+map <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p<RETURN><RETURN>
+"-- Open _gvimrc                        F12
+imap <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
+map <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
+"-- Open my general python library      CTRL + F12
+map <C-F12> <esc>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
+imap <C-F12> <esc>:w<RETURN><esc>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
+
+
+
+
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"// CUSTOMIZATIONS /////////////////////////////////////////////////////////////////////////////
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"///////////////////////////////////////////////////////////////////////////////////////////////
+"-- SWAP FILES-------------
+" This directory must exist
+set swapfile
+set dir=~/vim_swap_files
+
+"-- OPEN FILE TWICE -----
+" Si le fichier est modifé par
+" une autre application, mettre
+" à jour en temps réel.
+set autoread
+set shortmess+=A
+
+"-- UNDO-------------------------------------------------------
+set backupdir=$TEMP,$TMP,.
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
+"-- TABS --------------------------------------------------------
+filetype plugin indent on
+set tabstop=4       " show existing tab with 4 spaces width
+set shiftwidth=4    " when indenting with '>', use 4 spaces width
+set expandtab       " On pressing tab, insert 4 spaces
+
+"-- GUI personalization --------------
+set guioptions-=m "remove menu
+set guioptions-=T "remove toolbar
+" Font Settings
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Consolas:h12:cANSI
+  elseif has("gui_macvim")
+    set guifont=Consolas:h12:cANSI
+  elseif has("gui_win32")
+    set guifont=Consolas:h12:cANSI
+  endif
+endif
+" Display line numbers              F1 
+imap <F1> <esc>:set invnumber<RETURN>i
+map <F1> <esc>:set invnumber<RETURN>
+
+"-- SCROLLING -----------------------------------------------------
+set wrap!
+set guioptions+=b
+"-- Activate side scroll            ALT + F9
+nnoremap <silent><expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
+"-- Vertical scroll                 SHIFT + ARROWS
+map <S-Up> 3<Down>zzzt 
+map <S-Down> 3<Up>zz
+imap <S-Up> <Esc>3<Down>zzzta
+imap <S-Down> <Esc>3<Up>zza
