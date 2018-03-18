@@ -46,8 +46,8 @@ map <C-w> <esc>:x!<RETURN>
 map <A-r> :Rename 
 imap <A-r> <esc>:Rename 
 " Explore current file's location   ALT + F11
-map <A-F11> <esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p:h<RETURN><RETURN>:<BS>
-imap <A-F11> <esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p:h<RETURN><RETURN>:<BS>
+map <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
+imap <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
 
 "-- EDIT --------------------------------------------
 " Undo				                Cltr + Z
@@ -112,19 +112,28 @@ map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=ex
 imap <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
 map <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
 "-- Run                                 F3
-imap <F3> <esc>:! %:r.exe<RETURN><RETURN>
-map <F3> <esc>:! %:r.exe<RETURN><RETURN>
+imap <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
+map <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
 "-- Auto CMake and compile              ALT+F5
-imap <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-map <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+imap <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+map <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
 "-- Run                                 F5
-imap <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
-map <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+imap <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
+map <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
+
+"-- SQL --------------------------------------------------------------------------------------
+imap <M-F6> <esc>:let database = input('Database: ')<RETURN>
+map <M-F6> <esc>:let database = input('Database: ')<RETURN>
+imap <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
+map <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
+"imap <F6> <esc>:w<RETURN>:! C:\_util\gvimrc\util\vimExecuteSQL.bat %:p  <RETURN>
+"map <F6> <esc>:w<RETURN>:! C:\_util\gvimrc\util\vimExecuteSQL.bat %:p  <RETURN>
+
 
 "-- VIM execute ------------------------------------------------------------------------------
 "-- Execute current file                F11
-imap <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p<RETURN><RETURN>
-map <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\vimRun.bat" %:p<RETURN><RETURN>
+imap <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p<RETURN><RETURN>
+map <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p<RETURN><RETURN>
 "-- Open _gvimrc                        F12
 imap <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
 map <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
