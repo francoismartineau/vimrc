@@ -30,10 +30,10 @@ imap <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
 map <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
 
 "-- FILE --------------------------------------------
-" New 				                Ctrl + N
+" New                               Ctrl + N
 map <C-n> <esc>:!start gvim.exe<RETURN>
 imap <C-n> <esc>:!start gvim.exe<RETURN>
-" Save 				                Ctrl + S
+" Save                              Ctrl + S
 imap <C-s> <esc>:w!<RETURN>a
 map <C-s> <esc>:w!<RETURN>a
 " Save as			                Alt + S
