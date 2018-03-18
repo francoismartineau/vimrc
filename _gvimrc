@@ -36,7 +36,7 @@ imap <C-n> <esc>:!start gvim.exe<RETURN>
 " Save                              Ctrl + S
 imap <C-s> <esc>:w!<RETURN>a
 map <C-s> <esc>:w!<RETURN>a
-" Save as			                Alt + S
+" Save as                           Alt + S
 map <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
 imap <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
 " Save and quit                     Ctrl + W
@@ -50,7 +50,7 @@ map <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<
 imap <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
 
 "-- EDIT --------------------------------------------
-" Undo				                Cltr + Z
+" Undo                              Cltr + Z
 imap <C-z> <esc>ui
 map <C-z> <esc>u
 " Redo				                Alt + z
