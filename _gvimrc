@@ -188,11 +188,12 @@ if has("gui_running")
 endif
 " Display line numbers              F1 
 imap <F1> <esc>:set invnumber<RETURN>i
-map <F1> <esc>:set invnumber<RETURN>
+" Remove scroll bars 
+set guioptions-=r 
+set guioptions-=L
 
 "-- SCROLLING -----------------------------------------------------
 set wrap!
-set guioptions+=b
 "-- Activate side scroll            ALT + F9
 nnoremap <silent><expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
 "-- Vertical scroll                 SHIFT + ARROWS
