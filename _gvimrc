@@ -126,8 +126,6 @@ imap <M-F6> <esc>:let database = input('Database: ')<RETURN>
 map <M-F6> <esc>:let database = input('Database: ')<RETURN>
 imap <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
 map <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
-"imap <F6> <esc>:w<RETURN>:! C:\_util\gvimrc\util\vimExecuteSQL.bat %:p  <RETURN>
-"map <F6> <esc>:w<RETURN>:! C:\_util\gvimrc\util\vimExecuteSQL.bat %:p  <RETURN>
 
 
 "-- VIM execute ------------------------------------------------------------------------------
