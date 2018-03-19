@@ -5,15 +5,15 @@ set fileencoding=utf-8  " The encoding written to file.
 "-- JUMPS --------------------------------------------
 " End of line                       SHIFT + RIGHT
 map <S-Right> g_
-imap <S-Right> <esc>g_a
+imap <S-Right> <esc><S-Right>a
 " Start of line                     SHIFT + LEFT
 map <S-Left> ^
-imap <S-Left> <esc>^i
+imap <S-Left> <esc><S-Left>i
 " Paragraph                         CTRL + ARROWS
 map <C-Up> {
 map <C-Down> }
-imap <C-Up> <Esc>{a
-imap <C-Down> <Esc>}a
+imap <C-Up> <Esc><C-Up>a
+imap <C-Down> <Esc><C-down>a
 
 "-- AUTO INSERT ----------------------------------------
 " {}                                ALT + 7
@@ -23,66 +23,71 @@ imap <M-9> ()<Left>
 " []                                ALT + -
 imap <M--> []<Left>
 " New line after                    SHIFT + ENTER
-imap <S-CR> <esc>A<RETURN><Up><esc>I
-map <S-CR> A<RETURN><Up><esc>I
+map <S-CR> A<RETURN><Up><esc>
+imap <S-CR> <esc><S-CR>a
 " New line, keep position           CTRL + ENTER
-imap <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
-map <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
+map <C-CR> maI<Return><Up><esc>`a:delm a<Return>
+imap <C-CR> <esc><C-CR>a
 
 "-- FILE --------------------------------------------
 " New                               CTRL + N
-map <C-n> <esc>:!start gvim.exe<RETURN>
-imap <C-n> <esc>:!start gvim.exe<RETURN>
+map <C-n> :!start gvim.exe<RETURN>
+imap <C-n> <esc><C-n>
 " Save                              CTRL + S
-imap <C-s> <esc>:w!<RETURN>a
-map <C-s> <esc>:w!<RETURN>a
+map <C-s> :w!<RETURN>
+imap <C-s> <esc><C-s>a
 " Save as                           ALT + S
-map <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
-imap <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
+map <M-s> :bro sav C:\Users\ffran<RETURN>
+imap <M-s> <esc><M-s>
 " Save and quit                     CTRL + W
-imap <C-w> <esc>:x!<RETURN>
-map <C-w> <esc>:x!<RETURN>
+map <C-w> :x!<RETURN>
+imap <C-w> <esc><C-w>
 " Rename file                       ALT + R                 
 map <A-r> :Rename 
-imap <A-r> <esc>:Rename 
+imap <A-r> <esc><A-r> 
 " Explore current file's location   ALT + F11
-map <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
-imap <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
+map <A-F11> :!start %:p:h<RETURN><RETURN>:<BS>
+imap <A-F11> <esc><A-F11>i
+
 
 "-- EDIT --------------------------------------------
 " Undo                              CTRL + Z
-imap <C-z> <esc>ui
-map <C-z> <esc>u
+map <C-z> u
+imap <C-z> <esc><C-z>i
 " Redo                              ALT + Z
-imap <M-z> <esc><C-r>i
-map <M-z> <esc><C-r>
+map <M-z> <C-r>
+imap <M-z> <esc><M-z>i
 " Copy                              CLTR + C
 map <C-c> "+y
 " Cut                               CLTR + X
 map <C-x> "+d
 " Paste                             CTRL + V
-imap <C-v> <esc>"+p
-noremap <C-v> <esc>"+p
-vnoremap <C-v> x<Left><esc>"+p
+map <C-v> "+p
+imap <C-v> <esc><C-v>a
+vmap <C-v> x<Left><esc>"+p
 
 "-- UTILITIES -------------------------------------
 " Completion                        CTRL 
 imap <C-Space> <C-p>
 " Find                              CTRL + F
 set ignorecase
-map <C-f> <esc>/
+map <C-f> /
+imap <C-f> <esc><C-f>
 " Substitute                        SHIFT + S
-map <S-s> <esc>:%s/
+map <S-s> :%s/
 " Unselect found words              CTRL + L
-nnoremap <silent> <C-l> :nohl<CR><C-L>
+nmap <silent> <C-l> :nohl<CR><C-L>
 "Select all                         CTRL + A 
-imap <C-a> <esc>ggVG<CR>
-noremap <C-a> <esc>ggVG<CR>
+map <C-a> ggVG<CR>
+imap <C-a> <esc><C-a>i
 " Display line numbers              F1 
-imap <F1> <esc>:set invnumber<RETURN>i
-map <F1> <esc>:set invnumber<RETURN>i
+map <F1> :set invnumber<RETURN>
+imap <F1> <esc><F1>i
+" Activate side scroll              ALT + F9
+map <silent> <expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
+imap <M-F9> <esc><M-F9>i
 " Visual block                      ALT + V
-noremap <A-v> <C-v>                 
+map <A-v> <C-v>                 
 " Visual                            V
 map v v<Right>
 " Move                              ARROWS
@@ -101,48 +106,50 @@ vmap <Right> l
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "-- PYTHON ----------------------------------------------------------------------------------------------------
 "-- Save and run                        F2
-imap <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
-map <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
+map <F2> :w<RETURN>:! python %<RETURN><RETURN>
+imap <F2> <esc><F2>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
 "-- Main template                       CTRL+F3
-imap <C-F3> #include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
 map <C-F3> i#include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
+imap <C-F3> <esc><C-F3>
 "-- Header file template                SHIFT+F3
-imap <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
 map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
+imap <S-F3> <esc><S-F3>i
 "-- Compile current file only           ALT+F3
-imap <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
-map <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
-"-- Run exe that matches name           F3
-imap <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
-map <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
-"-- Auto CMake and compile              ALT+F5
-imap <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-map <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-"-- Run exe from CMake and compile      F5
-imap <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
-map <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
+map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<RETURN>
+imap <M-F3> <esc><M-F3>
+""-- Run exe that matches name           F3
+map <F3> :w<RETURN>:! %:r.exe<RETURN><RETURN>
+imap <F3> <esc><F3>
+""-- Auto CMake and compile              ALT+F5
+map <M-F5> :w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+imap <M-F5> <esc><M-F5>
+""-- Run exe from CMake and compile      F5
+map <F5> :w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
+imap <F5> <esc><F5>
 
-"-- SQL --------------------------------------------------------------------------------------
-"-- Select a database by name           ALT + F6
-imap <M-F6> <esc>:let database = input('Database: ')<RETURN>
-map <M-F6> <esc>:let database = input('Database: ')<RETURN>
-"-- Commit requests to selected db      F6
-imap <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
-map <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
+""-- SQL --------------------------------------------------------------------------------------
+""-- Select a database by name           ALT + F6
+map <M-F6> :let database = input('Database: ')<RETURN>
+imap <M-F6> <esc><M-F6>
+""-- Commit requests to selected db      F6
+map <F6> :w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
+imap <F6> <esc><F6>
 
-
-"-- VIM execute ------------------------------------------------------------------------------
-"-- Execute current file                F11
-imap <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p<RETURN><RETURN>
-map <F11> <esc>:w<RETURN><esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p<RETURN><RETURN>
-"-- Open _gvimrc                        F12
-imap <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
-map <F12> <esc>:w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
-"-- Open my general python library      CTRL + F12
-map <C-F12> <esc>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
-imap <C-F12> <esc>:w<RETURN><esc>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
+""-- VIM execute ------------------------------------------------------------------------------
+""-- Execute current file                F11
+map <F11> :w<CR>:!start %<CR>
+imap <F11> <esc><F11>i
+""-- Reload _gvimrc                      ALT + F12           est-ce que Ã§a fonctionne vraiment?
+map <M-F12> :so C:\Users\ffran\_gvimrc<RETURN>
+imap <M-F12> <esc><M-F12>i
+""-- Edit _gvimrc                        F12
+map <F12> :w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
+imap <F12> <esc><F12>i
+""-- Open my general python library      CTRL + F12
+map <C-F12> :w<CR>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
+imap <C-F12> <esc><C-F12>
 
 
 
@@ -157,9 +164,9 @@ set swapfile
 set dir=~/vim_swap_files
 
 "-- OPEN FILE TWICE -----
-" Si le fichier est modifé par
+" Si le fichier est modifÃ© par
 " une autre application, mettre
-" à jour en temps réel.
+" Ã  jour en temps rÃ©el.
 set autoread
 set shortmess+=A
 
@@ -195,10 +202,8 @@ set guioptions-=L
 
 "-- SCROLLING -----------------------------------------------------
 set wrap!
-"-- Activate side scroll            ALT + F9
-nnoremap <silent><expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
 "-- Vertical scroll                 SHIFT + ARROWS
 map <S-Up> 3<Down>zzzt 
 map <S-Down> 3<Up>zz
-imap <S-Up> <Esc>3<Down>zzzta
-imap <S-Down> <Esc>3<Up>zza
+imap <S-Up> <Esc><S-Up>a
+imap <S-Down> <Esc><S-Down>a

@@ -65,4 +65,4 @@ Gui,+ToolWindow
         return
 
 }
-
+#IfWinActive
