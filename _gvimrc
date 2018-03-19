@@ -30,16 +30,16 @@ imap <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
 map <C-CR> <esc>maI<Return><Up><esc>`a:delm a<Return>a
 
 "-- FILE --------------------------------------------
-" New                               Ctrl + N
+" New                               CTRL + N
 map <C-n> <esc>:!start gvim.exe<RETURN>
 imap <C-n> <esc>:!start gvim.exe<RETURN>
-" Save                              Ctrl + S
+" Save                              CTRL + S
 imap <C-s> <esc>:w!<RETURN>a
 map <C-s> <esc>:w!<RETURN>a
-" Save as                           Alt + S
+" Save as                           ALT + S
 map <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
 imap <M-s> <esc>:bro sav C:\Users\ffran<RETURN>
-" Save and quit                     Ctrl + W
+" Save and quit                     CTRL + W
 imap <C-w> <esc>:x!<RETURN>
 map <C-w> <esc>:x!<RETURN>
 " Rename file                       ALT + R                 
@@ -50,35 +50,38 @@ map <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<
 imap <A-F11> <esc>:!start "C:\_util\gvimrc\util\vimExecuteCurrentFile.bat" %:p:h<RETURN><RETURN>:<BS>
 
 "-- EDIT --------------------------------------------
-" Undo                              Cltr + Z
+" Undo                              CTRL + Z
 imap <C-z> <esc>ui
 map <C-z> <esc>u
-" Redo				                Alt + z
+" Redo                              ALT + Z
 imap <M-z> <esc><C-r>i
 map <M-z> <esc><C-r>
-" Copy				                Cltr + C
+" Copy                              CLTR + C
 map <C-c> "+y
-" Cut				                Cltr + X
+" Cut                               CLTR + X
 map <C-x> "+d
-" Paste				                Ctrl + V
+" Paste                             CTRL + V
 imap <C-v> <esc>"+p
 noremap <C-v> <esc>"+p
 vnoremap <C-v> x<Left><esc>"+p
 
 "-- UTILITIES -------------------------------------
-" Completion
+" Completion                        CTRL 
 imap <C-Space> <C-p>
-" Find				                Ctrl + F
+" Find                              CTRL + F
 set ignorecase
 map <C-f> <esc>/
-" Substitute                        Shift + S
+" Substitute                        SHIFT + S
 map <S-s> <esc>:%s/
 " Unselect found words              CTRL + L
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-"Select all			                Ctrl + A 
+nnoremap <silent> <C-l> :nohl<CR><C-L>
+"Select all                         CTRL + A 
 imap <C-a> <esc>ggVG<CR>
 noremap <C-a> <esc>ggVG<CR>
-" Visual block                      Alt + V
+" Display line numbers              F1 
+imap <F1> <esc>:set invnumber<RETURN>i
+map <F1> <esc>:set invnumber<RETURN>i
+" Visual block                      ALT + V
 noremap <A-v> <C-v>                 
 " Visual                            V
 map v v<Right>
@@ -102,7 +105,7 @@ imap <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
 map <F2> <esc>:w<RETURN>:! python %<RETURN><RETURN>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
-"-- Main template	                    CTRL+F3
+"-- Main template                       CTRL+F3
 imap <C-F3> #include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
 map <C-F3> i#include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
 "-- Header file template                SHIFT+F3
@@ -111,19 +114,21 @@ map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=ex
 "-- Compile current file only           ALT+F3
 imap <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
 map <M-F3> <esc>:w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O2 -Wall -Wno-write-strings % -o %:r<RETURN>
-"-- Run                                 F3
+"-- Run exe that matches name           F3
 imap <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
 map <F3> <esc>:w<RETURN>:! %:r.exe<RETURN><RETURN>
 "-- Auto CMake and compile              ALT+F5
 imap <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
 map <M-F5> <esc>:w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-"-- Run                                 F5
+"-- Run exe from CMake and compile      F5
 imap <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
 map <F5> <esc>:w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
 
 "-- SQL --------------------------------------------------------------------------------------
+"-- Select a database by name           ALT + F6
 imap <M-F6> <esc>:let database = input('Database: ')<RETURN>
 map <M-F6> <esc>:let database = input('Database: ')<RETURN>
+"-- Commit requests to selected db      F6
 imap <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
 map <F6> <esc>:w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
 
@@ -184,8 +189,6 @@ if has("gui_running")
     set guifont=Consolas:h12:cANSI
   endif
 endif
-" Display line numbers              F1 
-imap <F1> <esc>:set invnumber<RETURN>i
 " Remove scroll bars 
 set guioptions-=r 
 set guioptions-=L
