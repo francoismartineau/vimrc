@@ -34,8 +34,8 @@ imap <C-CR> <esc><C-CR>a
 map <C-n> :!start gvim.exe<RETURN>
 imap <C-n> <esc><C-n>
 " Save                              CTRL + S
-map <C-s> :w!<RETURN>
-imap <C-s> <esc><C-s>a
+map <C-s> :w!<RETURN>a
+imap <C-s> <esc><C-s>
 " Save as                           ALT + S
 map <M-s> :bro sav C:\Users\ffran<RETURN>
 imap <M-s> <esc><M-s>
@@ -48,7 +48,6 @@ imap <A-r> <esc><A-r>
 " Explore current file's location   ALT + F11
 map <A-F11> :!start %:p:h<RETURN><RETURN>:<BS>
 imap <A-F11> <esc><A-F11>i
-
 
 "-- EDIT --------------------------------------------
 " Undo                              CTRL + Z
@@ -87,7 +86,7 @@ imap <F1> <esc><F1>i
 map <silent> <expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
 imap <M-F9> <esc><M-F9>i
 " Visual block                      ALT + V
-map <A-v> <C-v>                 
+nnoremap <A-v> <C-v>                 
 " Visual                            V
 map v v<Right>
 " Move                              ARROWS

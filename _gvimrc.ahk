@@ -26,8 +26,6 @@ Gui,+ToolWindow
     !Right::Send {Escape}wdwa{Backspace}
 
 
-
-
     ;-- BUFFERS -------------------------------------------------------------------
     ; Open new empty buffer                     CTRL + SHIFT + UP
     ^+Up::Send {Escape}:w{Enter}:enew{Enter}       
@@ -50,8 +48,6 @@ Gui,+ToolWindow
     ^!Right::Send {Escape}:w{Enter}:wincmd l{Enter}     
     ; Stop vertical split                       CTRL + ALT + DOWN
     ^!Down::Send {Escape}:w{Enter}:on{Enter}           
-    
-    
     
 
     ;-- SCROLL SPEED --------------------------------------------------------------
