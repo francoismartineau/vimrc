@@ -75,7 +75,7 @@ imap <C-f> <esc><C-f>
 " Substitute                        SHIFT + S
 map <S-s> :%s/
 " Unselect found words              CTRL + L
-nmap <silent> <C-l> :nohl<CR><C-L>
+nmap <silent> <C-l> :nohl<CR>
 "Select all                         CTRL + A 
 map <C-a> ggVG<CR>
 imap <C-a> <esc><C-a>i
