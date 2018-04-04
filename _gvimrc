@@ -104,9 +104,9 @@ vmap <Right> l
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "-- PYTHON ----------------------------------------------------------------------------------------------------
-"-- Save and run                        F2
-map <F2> :w<RETURN>:! python %<RETURN><RETURN>
-imap <F2> <esc><F2>
+"-- Save and run                        ALT+F2
+map <M-F2> :w<RETURN>:! python %<RETURN><RETURN>
+imap <M-F2> <esc><M-F2>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
 "-- Main template                       CTRL+F3
@@ -118,29 +118,34 @@ imap <S-F3> <esc><S-F3>i
 "-- Compile current file only           ALT+F3
 map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<RETURN>
 imap <M-F3> <esc><M-F3>
-""-- Run exe that matches name           F3
+""-- Run exe that matches name          F3
 map <F3> :w<RETURN>:! %:r.exe<RETURN><RETURN>
 imap <F3> <esc><F3>
-""-- Auto CMake and compile              ALT+F5
+""-- Auto CMake and compile             ALT+F5
 map <M-F5> :w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
 imap <M-F5> <esc><M-F5>
-""-- Run exe from CMake and compile      F5
+""-- Run exe from CMake and compile     F5
 map <F5> :w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
 imap <F5> <esc><F5>
 
+""-- GO  --------------------------------------------------------------------------------------
+""-- Save and run                       ALT + F7
+map <M-F7> :w<RETURN>:!go run %<RETURN>
+imap <M-F7> <esc><M-F7>
+
 ""-- SQL --------------------------------------------------------------------------------------
-""-- Select a database by name           ALT + F6
+""-- Select a database by name          ALT + F6
 map <M-F6> :let database = input('Database: ')<RETURN>
 imap <M-F6> <esc><M-F6>
-""-- Commit requests to selected db      F6
+""-- Commit requests to selected db     F6
 map <F6> :w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
 imap <F6> <esc><F6>
 
 ""-- VIM execute ------------------------------------------------------------------------------
-""-- Execute current file                F11
+""-- Execute current file               F11
 map <F11> :w<CR>:!start %<CR>
 imap <F11> <esc><F11>i
-""-- Reload _gvimrc                      ALT + F12           est-ce que ça fonctionne vraiment?
+""-- Reload _gvimrc                     ALT + F12          
 map <M-F12> :so C:\Users\ffran\_gvimrc<RETURN>
 imap <M-F12> <esc><M-F12>i
 ""-- Edit _gvimrc                        F12
