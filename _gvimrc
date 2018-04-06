@@ -104,9 +104,9 @@ vmap <Right> l
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "-- PYTHON ----------------------------------------------------------------------------------------------------
-"-- Save and run                        ALT+F2
-map <M-F2> :w<RETURN>:! python %<RETURN><RETURN>
-imap <M-F2> <esc><M-F2>
+"-- Save and run                        F2
+map <F2> :w<RETURN>:! python %<RETURN><RETURN>
+imap <F2> <esc><F2>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
 "-- Main template                       CTRL+F3
@@ -129,16 +129,16 @@ map <F5> :w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
 imap <F5> <esc><F5>
 
 ""-- GO  --------------------------------------------------------------------------------------
-""-- Save and run                       ALT + F7
-map <M-F7> :w<RETURN>:!go run %<RETURN>
-imap <M-F7> <esc><M-F7>
+""-- Save and run                       F7
+map <F7> :w<RETURN>:!go run %<RETURN>
+imap <F7> <esc><F7>
 
 ""-- SQL --------------------------------------------------------------------------------------
 ""-- Select a database by name          ALT + F6
 map <M-F6> :let database = input('Database: ')<RETURN>
 imap <M-F6> <esc><M-F6>
 ""-- Commit requests to selected db     F6
-map <F6> :w<RETURN>:!mysql -u root -p <c-r>=database<CR> < %:p  <RETURN>
+map <F6> :w<RETURN>:!mysql -u root -p < %:p  <RETURN>
 imap <F6> <esc><F6>
 
 ""-- VIM execute ------------------------------------------------------------------------------
