@@ -116,7 +116,8 @@ imap <C-F3> <esc><C-F3>
 map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
 imap <S-F3> <esc><S-F3>i
 "-- Compile current file only           ALT+F3
-map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<RETURN>
+map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make % -o %:r<RETURN>
+"map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<RETURN>
 imap <M-F3> <esc><M-F3>
 ""-- Run exe that matches name          F3
 map <F3> :w<RETURN>:! %:r.exe<RETURN><RETURN>
