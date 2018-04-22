@@ -23,30 +23,30 @@ imap <M-9> ()<Left>
 " []                                ALT + -
 imap <M--> []<Left>
 " New line after                    SHIFT + ENTER
-map <S-CR> A<RETURN><Up><esc>
+map <S-CR> A<CR><Up><esc>
 imap <S-CR> <esc><S-CR>a
 " New line, keep position           CTRL + ENTER
-map <C-CR> maI<Return><Up><esc>`a:delm a<Return>
+map <C-CR> maI<CR><Up><esc>`a:delm a<CR>
 imap <C-CR> <esc><C-CR>a
 
 "-- FILE --------------------------------------------
 " New                               CTRL + N
-map <C-n> :!start gvim.exe<RETURN>
+map <C-n> :!start gvim.exe<CR>
 imap <C-n> <esc><C-n>
 " Save                              CTRL + S
-map <C-s> :w!<RETURN>a
+map <C-s> :w!<CR>a
 imap <C-s> <esc><C-s>
 " Save as                           ALT + S
-map <M-s> :bro sav C:\Users\ffran<RETURN>
+map <M-s> :bro sav C:\Users\ffran<CR>
 imap <M-s> <esc><M-s>
 " Save and quit                     CTRL + W
-map <C-w> :x!<RETURN>
+map <C-w> :x!<CR>
 imap <C-w> <esc><C-w>
 " Rename file                       ALT + R                 
 map <A-r> :Rename 
 imap <A-r> <esc><A-r> 
 " Explore current file's location   ALT + F11
-map <A-F11> :!start %:p:h<RETURN><RETURN>:<BS>
+map <A-F11> :!start %:p:h<CR><CR>:<BS>
 imap <A-F11> <esc><A-F11>i
 
 "-- EDIT --------------------------------------------
@@ -80,7 +80,7 @@ nmap <silent> <C-l> :nohl<CR>
 map <C-a> ggVG<CR>
 imap <C-a> <esc><C-a>i
 " Display line numbers              F1 
-map <F1> :set invnumber<RETURN>
+map <F1> :set invnumber<CR>
 imap <F1> <esc><F1>i
 " Activate side scroll              ALT + F9
 map <silent> <expr> <M-F9> ':set wrap! go'.'-+'[&wrap]."=b\r"
@@ -105,54 +105,61 @@ vmap <Right> l
 "///////////////////////////////////////////////////////////////////////////////////////////////
 "-- PYTHON ----------------------------------------------------------------------------------------------------
 "-- Save and run                        F2
-map <F2> :w<RETURN>:! python %<RETURN><RETURN>
+map <F2> :w<CR>:! python %<CR><CR>
 imap <F2> <esc><F2>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
 "-- Main template                       CTRL+F3
-map <C-F3> i#include <iostream><RETURN>using namespace std;<RETURN><RETURN>int main(){<RETURN>return 0;<RETURN>}
+map <C-F3> i#include <iostream><CR>using namespace std;<CR><CR>int main(){<CR>CR 0;<CR>}
 imap <C-F3> <esc><C-F3>
 "-- Header file template                SHIFT+F3
-map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<RETURN><RETURN><RETURN>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
+map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<CR>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<CR><CR><CR>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
 imap <S-F3> <esc><S-F3>i
 "-- Compile current file only           ALT+F3
-map <M-F3> :w<RETURN>:set makeprg=g++ <RETURN>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<RETURN>
+map <M-F3> :w<CR>:set makeprg=g++ <CR>:make -std=c++14 -O3 -Wall -Wno-write-strings % -o %:r<CR>
 imap <M-F3> <esc><M-F3>
 ""-- Run exe that matches name          F3
-map <F3> :w<RETURN>:! %:r.exe<RETURN><RETURN>
+map <F3> :w<CR>:! %:r.exe<CR><CR>
 imap <F3> <esc><F3>
 ""-- Auto CMake and compile             ALT+F5
-map <M-F5> :w<RETURN>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+map <M-F5> :w<CR>:! python C:\_util\auto_cmake\auto_cmake.py %<CR><CR>
 imap <M-F5> <esc><M-F5>
 ""-- Run exe from CMake and compile     F5
-map <F5> :w<RETURN>:! %:p:h:t.exe<RETURN><RETURN>
+map <F5> :w<CR>:! %:p:h:t.exe<CR><CR>
 imap <F5> <esc><F5>
-
-""-- GO  --------------------------------------------------------------------------------------
-""-- Save and run                       F7
-map <F7> :w<RETURN>:!go run %<RETURN>
-imap <F7> <esc><F7>
 
 ""-- SQL --------------------------------------------------------------------------------------
 ""-- Select a database by name          ALT + F6
-map <M-F6> :let database = input('Database: ')<RETURN>
+map <M-F6> :let database = input('Database: ')<CR>
 imap <M-F6> <esc><M-F6>
 ""-- Commit requests to selected db     F6
-map <F6> :w<RETURN>:!mysql -u root -p < %:p  <RETURN>
+map <F6> :w<CR>:!mysql -u root -p < %:p  <CR>
 imap <F6> <esc><F6>
+
+""-- GO  --------------------------------------------------------------------------------------
+""-- Save and run                       F7
+map <F7> :w<CR>:!go run %<CR>
+imap <F7> <esc><F7>
+
+""-- LATEX ------------------------------------------------------------------------------------
+map <F8> :w<CR>:! pdflatex -output-directory %:p:h -aux-directory C:\Users\ffran\latex_aux_directory %<CR>
+imap <F8> <esc><F8>
+map <C-F8> :w<CR>i\documentclass{article}<CR>\usepackage[utf8]{inputenc}<CR>\usepackage{hyperref}<CR>
+                 \\usepackage{relsize}<CR>\usepackage[margin=2cm]{geometry}<CR>\setlength\parindent{0cm}<CR>
+                 \\begin{document}<CR><CR><CR><CR>\end{document}<esc><UP><UP><UP>i
 
 ""-- VIM execute ------------------------------------------------------------------------------
 ""-- Execute current file               F11
 map <F11> :w<CR>:!start %<CR>
 imap <F11> <esc><F11>i
 ""-- Reload _gvimrc                     ALT + F12          
-map <M-F12> :so C:\Users\ffran\_gvimrc<RETURN>
+map <M-F12> :so C:\Users\ffran\_gvimrc<CR>
 imap <M-F12> <esc><M-F12>i
 ""-- Edit _gvimrc                        F12
-map <F12> :w<RETURN>:e C:\Users\ffran\_gvimrc<RETURN>
+map <F12> :w<CR>:e C:\Users\ffran\_gvimrc<CR>
 imap <F12> <esc><F12>i
 ""-- Open my general python library      CTRL + F12
-map <C-F12> :w<CR>:e C:\Users\ffran\Anaconda3\Lib\malib.py<RETURN>
+map <C-F12> :w<CR>:e C:\Users\ffran\Anaconda3\Lib\malib.py<CR>
 imap <C-F12> <esc><C-F12>
 
 
