@@ -110,7 +110,7 @@ imap <F2> <esc><F2>
 
 "-- C++ -------------------------------------------------------------------------------------------------------
 "-- Main template                       CTRL+F3
-map <C-F3> i#include <iostream><CR>using namespace std;<CR><CR>int main(){<CR>CR 0;<CR>}
+map <C-F3> i#include <iostream><CR>using namespace std;<CR><CR>int main(){<CR>return 0;<CR>}
 imap <C-F3> <esc><C-F3>
 "-- Header file template                SHIFT+F3
 map <S-F3> i#ifndef  <C-R>=expand('%:r')<CR>_H_INCLUDED<CR>#define  <C-R>=expand('%:r')<CR>_H_INCLUDED<CR><CR><CR>#endif  //<C-R>=expand('%:r')<CR>_H_INCLUDED
@@ -210,7 +210,6 @@ endif
 " Remove scroll bars 
 set guioptions-=r 
 set guioptions-=L
-
 "-- SCROLLING -----------------------------------------------------
 set wrap!
 "-- Vertical scroll                 SHIFT + ARROWS
